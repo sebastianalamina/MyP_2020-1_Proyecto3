@@ -49,7 +49,7 @@ class TestPeon
     renglón = rand(1.. 8)
     posición = Posicion.new(columna, renglón)
     peon_to_s = "Esta pieza blanca (Peon) se encuentra en la posición #{posición}"
-    peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
+    peon = Peon.new(columna, renglón, "blanca")
     assert(peon_to_s == peon.to_s)
   end
 
