@@ -45,14 +45,58 @@ class TestTorre
         when 3
           TestMovimientos.testDerechaArriba(torre, 0, k)
         when 2
-          TestMovimientos.testDerechaAbajo(torre, k, 0)
+          TestMovimientos.testIzquierdaAbajo(torre, k, 0)
         when 1
-          TestMovimientos.testDerechaAbajo(torre, 0, k)
-        j--
+          TestMovimientos.testIzquierdaAbajo(torre, 0, k)
         end
+        j = j - 1
       end
-    i--
+    i = i - 1
     end
+    self.testDezplazarMovimientosInvalidos
+  end
+
+    #Prueba que el método dezplazar de la pieza Torre no admita movimientos inválidos.
+  def testDezplazarMovimientosInvalidos
+    mensaje_error = "Algo salió mal en testDesplazarMovimientosInvalidos"
+    i = 50
+    while i != 0
+      begin
+        torre = Torre.new(rand(1..8), rand(1..8), "blanca")
+        TestMovimientos.testDerechaArriba(torre, rand(1.. 8), rand(1.. 8))
+        assert(false, mensaje_error + " de #{torre} [testDerechaArriba]")
+      rescue ArgumentError => ae
+      end
+      begin
+        torre = Torre.new(rand(1.. 8), rand(1.. 8), "blanca")
+        TestMovimientos.testDerechaAbajo(torre, rand(1.. 8), rand(1.. 8))
+        assert(false, mensaje_error + "#{torre} [testDerechaAbajo]")
+      rescue ArgumentError => ae
+      end
+      begin
+        torre = Torre.new(rand(1.. 8), rand(1.. 8), "blanca")
+        TestMovimientos.testIzquierdaArriba(torre, rand(1.. 8), rand(1.. 8))
+        assert(false, mensaje_error + "#{torre} [testIzquierdaArriba]")
+      rescue ArgumentError => ae
+      end
+      begin
+        torre = Torre.new(rand(1.. 8), rand(1.. 8), "blanca")
+        TestMovimientos.testIzquierdaAbajo(torre, rand(1.. 8), rand(1.. 8))
+        assert(false, mensaje_error + "#{torre} [testIzquierdaAbajo]")
+      rescue ArgumentError => ae
+      end
+      i = i - 1
+    end
+  end
+
+  #Prueba del método to_s de la pieza Torre.
+  def testTo_s
+    columna = rand(1.. 8)
+    renglón = rand(1.. 8)
+    posición = Posicion.new(columna, renglón)
+    torre_to_s = "Esta pieza blanca (Torre) se encuentra en la posición #{posición}"
+    torre = Torre.new(columna, renglón, "blanca")
+    assert(torre_to_s == torre.to_s, "Algo salió mal en testTo_s de #{torre}")
   end
 
 end
