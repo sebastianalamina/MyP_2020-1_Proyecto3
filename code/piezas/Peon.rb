@@ -65,4 +65,80 @@ class Peon < Pieza
     return listaPM
   end
 
+  def posiblesMovimientosTablero(tablero)
+    # Lista con los posibles movimientos
+    # de la pieza.
+    listaPM = posiblesMovimientos
+
+    begin
+      if color
+        x = desplazar(0, 1)
+        y = desplazar(0, 2)
+      else
+        x = desplazar(0, -1)
+        y = desplazar(0, -2)
+      end
+    rescue
+    end
+
+    pieza1 = tablero.getPieza(x.columna, x.renglón)
+    pieza2 = tablero.getPieza(y.columna, y.renglón)
+    if pieza1
+      listaPM = []
+    elsif pieza2
+      listaPM.delete(y)
+    end
+
+    # Arriba a la derecha
+    if color
+      begin
+        z = desplazar(1, 1)
+        pieza = tablero.getPieza(z.columna, z.renglón)
+        if pieza && self.color != pieza.color
+          listaPM.push(z)
+        end
+      rescue
+      end
+    end
+
+    # Arriba a la izquierda
+    if color
+      begin
+        z = desplazar(-1, 1)
+        pieza = tablero.getPieza(z.columna, z.renglón)
+        if pieza && self.color != pieza.color
+          listaPM.push(z)
+        end
+      rescue
+      end
+    end
+
+    # Abajo a la derecha
+    if !color
+      begin
+        z = desplazar(1, -1)
+        pieza = tablero.getPieza(z.columna, z.renglón)
+        if pieza && self.color != pieza.color
+          listaPM.push(z)
+        end
+      rescue
+      end
+    end
+
+    # Abajo a la izquierda
+    if !color
+      begin
+        z = desplazar(-1, -1)
+        pieza = tablero.getPieza(z.columna, z.renglón)
+        if pieza && self.color != pieza.color
+          listaPM.push(z)
+        end
+      rescue
+      end
+    end
+
+    # Se regresa la lista...
+    return listaPM
+  end
+
 end
