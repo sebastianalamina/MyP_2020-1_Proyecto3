@@ -75,7 +75,7 @@ class Caballo < Pieza
 
     # OESTE -> SUR.
     begin
-      x = desplazar(-2, 1)
+      x = desplazar(-2, -1)
       listaPM.push(x)
     rescue
     end
