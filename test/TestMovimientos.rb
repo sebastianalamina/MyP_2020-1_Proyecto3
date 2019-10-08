@@ -1,5 +1,5 @@
-require_relative "../Pieza"
-require_relative "../Posicion"
+require_relative "../code/Pieza"
+require_relative "../code/Posicion"
 require "test/unit/assertions"
 include Test::Unit::Assertions
 

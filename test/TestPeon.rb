@@ -1,5 +1,5 @@
-require_relative "../piezas/Peon"
-require_relative "../Posicion"
+require_relative "../code/piezas/Peon"
+require_relative "../code/Posicion"
 require_relative "TestPieza"
 require_relative "TestMovimientos"
 require "test/unit/assertions"
@@ -11,24 +11,24 @@ class TestPeon < TestPieza
   #Prueba para el constructor de la pieza Peón.
   def testConstructor
     columna = rand(1... 8)
-    renglón = rand(1... 8)
+    renglón = rand(2... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Peon.new(rand(-8... -1), rand(1... 8), "blanca")
+      Peon.new(rand(-8... -1), rand(1... 8), true)
       assert false, mensaje_error + "[columna]"
     rescue ArgumentError => ae
     end
     begin
-      Peon.new(rand(1... 8), rand(-8... -1, "negra"))
+      Peon.new(rand(1... 8), rand(-8... -1, false))
       assert false, mensaje_error + "[renglón]"     
     rescue ArgumentError => ae
     end
     begin
-      Peon.new(rand(1... 8), rand(1... 8), "roja")
+      Peon.new(rand(1... 8), 1, true)
       assert false, mensaje_error + "[color]"
     rescue ArgumentError => ae
     end
-    peon = Peon.new(columna, renglón, "blanco")
+    peon = Peon.new(columna, renglón, true)
     assert peon.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición"
   end
 
@@ -38,8 +38,8 @@ class TestPeon < TestPieza
     i = 50
     while i != 0
       columna = rand(1... 8)
-      renglón = rand(1... 8)
-      peon = Peon.new(renglón, columna, "blanco")
+      renglón = rand(2... 8)
+      peon = Peon.new(columna, renglón, true)
       TestMovimientos.testDerechaArriba(peon, 0, 1)
       i = i - 1
     end
@@ -48,7 +48,7 @@ class TestPeon < TestPieza
     #hacia arriba si el movimiento es válido.
     while i != 0
       columna = rand(1... 8)
-      peon = Peon.new(2, columna)
+      peon = Peon.new(columna, 2, true)
       if columna < 8
         posicion = peon.desplazar(1, 1)
         assert posicion == Posicion.new(columna + 1, 3), "Algo salió mal en testDesplazar de #{peon}"
@@ -60,14 +60,14 @@ class TestPeon < TestPieza
     #hacia arriba si el movimiento es válido.
     while i != 0
       columna = rand(1... 8)
-      peon = Peon.new(2, columna)
+      peon = Peon.new(columna, 2, true)
       if columna > 1
         posicion = peon.desplazar(-1, 1)
         assert posicion == Posicion.new(columna - 1, 3)
       end
       i = i - 1
     end
-    self.testDesplazarMovimientosInvalidos
+    #self.testDesplazarMovimientosInvalidos
   end
 
   #Prueba que el método dezplazar de la pieza Peón no admita movimientos inválidos.
@@ -106,10 +106,10 @@ class TestPeon < TestPieza
   #Prueba el método to_s de la pieza Peón.
   def testTo_s
     columna = rand(1.. 8)
-    renglón = rand(1.. 8)
+    renglón = rand(2.. 8)
     posición = Posicion.new(columna, renglón)
-    peon_to_s = "Esta pieza blanca (Peon) se encuentra en la posición #{posición}"
-    peon = Peon.new(columna, renglón, "blanca")
+    peon_to_s = "Esta pieza blanca (Peon) se encuentra en la posición #{posición}."
+    peon = Peon.new(columna, renglón, true)
     assert peon_to_s == peon.to_s, "Algo salió mal en testTo_s #{peon}"
   end
 

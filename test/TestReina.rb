@@ -1,5 +1,5 @@
-require_relative "../piezas/Reina"
-require_relative "../Posicion"
+require_relative "../code/piezas/Reina"
+require_relative "../code/Posicion"
 require_relative "TestPieza"
 require_relative "TestMovimientos"
 require "test/unit/assertions"

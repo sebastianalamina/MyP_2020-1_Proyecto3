@@ -1,5 +1,5 @@
-require_relative "../piezas/Torre"
-require_relative "../Posicion"
+require_relative "../code/piezas/Torre"
+require_relative "../code/Posicion"
 require_relative "TestPieza"
 require_relative "TestMovimientos"
 require "test/unit/assertions"
@@ -14,21 +14,21 @@ class TestTorre < TestPieza
     renglón = rand(1... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Torre.new(rand(-8... -1), rand(1... 8), "blanca")
+      Torre.new(rand(-8... -1), rand(1... 8), true)
       assert(false, mensaje_error + "[columna]")
     rescue ArgumentError => ae
     end
     begin
-      Torre.new(rand(1... 8), rand(-8... -1, "negra"))
+      Torre.new(rand(1... 8), rand(-8... -1, false))
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
     begin
-      Torre.new(rand(1... 8), rand(1... 8), "roja")
-      assert(false, mensaje_error + "[color]")
+      Torre.new(rand(1... 8), rand(1... 8), true)
+      assert(true, mensaje_error + "[color]")
     rescue ArgumentError => ae
     end
-    torre = Torre.new(columna, renglón, "blanco")
+    torre = Torre.new(columna, renglón, true)
     assert(torre.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
