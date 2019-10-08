@@ -35,20 +35,9 @@ class Peon < Pieza
     end
 
     if (renglón >= 1 && renglón <= 8)
-      @renglón = renglón
+      @posición.renglón = renglón
     else
       raise ArgumentError, "El renglón tiene que ser " +
-                            "un valor entre 1 y 8."
-    end
-  end
-
-  # Método setter para la columna de un peón.
-  # columna:: Columna nueva (entero entre 1 y 8).
-  def columna=(columna)
-    if (columna >= 1 && columna <= 8)
-      @columna = columna
-    else
-      raise ArgumentError, "La columna tiene que ser " +
                             "un valor entre 1 y 8."
     end
   end
