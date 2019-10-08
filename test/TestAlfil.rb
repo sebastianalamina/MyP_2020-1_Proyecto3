@@ -1,9 +1,12 @@
-require_relative "../code/piezas/Alfil"
-require_relative "../code/Posicion"
+require_relative "../piezas/Alfil"
+require_relative "../Posicion"
+require_relative "TestPieza"
 require_relative "TestMovimientos"
+require "test/unit/assertions"
+include Test::Unit::Assertions
 
 #Clase para tests de Alfil
-class TestAlfil
+class TestAlfil < TestPieza
 
   #Prueba para el constructor de la pieza Alfil.
   def testConstructor

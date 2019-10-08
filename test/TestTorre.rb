@@ -1,9 +1,12 @@
-require_relative "../code/piezas/Torre"
-require_relative "../code/Posicion"
+require_relative "../piezas/Torre"
+require_relative "../Posicion"
+require_relative "TestPieza"
 require_relative "TestMovimientos"
+require "test/unit/assertions"
+include Test::Unit::Assertions
 
 #Clase para tests de Torre
-class TestTorre
+class TestTorre < TestPieza
 
   #Prueba para el constructor de la pieza Torre. 
   def testConstructor

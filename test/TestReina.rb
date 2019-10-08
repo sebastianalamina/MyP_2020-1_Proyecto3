@@ -1,9 +1,12 @@
-require_relative "../code/piezas/Reina"
-require_relative "../code/Posicion"
+require_relative "../piezas/Reina"
+require_relative "../Posicion"
+require_relative "TestPieza"
 require_relative "TestMovimientos"
+require "test/unit/assertions"
+include Test::Unit::Assertions
 
 #Clase para tests de Reina
-class TestReina
+class TestReina < TestPieza
 
   #Prueba para el constructor de la pieza Reina. 
   def testConstructor

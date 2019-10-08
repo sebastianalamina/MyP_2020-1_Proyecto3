@@ -1,9 +1,12 @@
-require_relative "../code/piezas/Caballo"
-require_relative "../code/Posicion"
+require_relative "../piezas/Caballo"
+require_relative "../Posicion"
+require_relative "TestPieza"
 require_relative "TestMovimientos"
+require "test/unit/assertions"
+include Test::Unit::Assertions
 
 #Clase para tests de Caballo
-class TestCaballo
+class TestCaballo < TestPieza
 
   #Prueba para el constructor de la pieza Caballo. 
   def testConstructor
@@ -29,32 +32,32 @@ class TestCaballo
     assert(caballo.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
-  #Prueba el método desplazar de la pieza Torre. Se prueban movimientos
-  #que una pieza torre debe poder realizar, así como movimientos no válidos para esta pieza y 
+  #Prueba el método desplazar de la pieza Caballo. Se prueban movimientos
+  #que una pieza Caballo debe poder realizar, así como movimientos no válidos para esta pieza y 
   #se prueba que la pieza no salga del tablero.
   def testDesplazar
     i = 8
     while i != 0
       j = 50
       while j != 0
-        torre = Torre.new(rand(1... 8), rand(1... 8), "blanco")
+        caballo = Caballo.new(rand(1... 8), rand(1... 8), "blanco")
         case i
         when 8
-          TestMovimientos.testDerechaArriba(rey, 1, 2)
+          TestMovimientos.testDerechaArriba(caballo, 1, 2)
         when 7
-          TestMovimientos.testDerechaArriba(rey, 2, 1)
+          TestMovimientos.testDerechaArriba(caballo, 2, 1)
         when 6
-          TestMovimientos.testIzquierdaArriba(rey, 1, 2)
+          TestMovimientos.testIzquierdaArriba(caballo, 1, 2)
         when 5
-          TestMovimientos.testIzquierdaArriba(rey, 2, 1)
+          TestMovimientos.testIzquierdaArriba(caballo, 2, 1)
         when 4
-          TestMovimientos.testDerechaAbajo(rey, 1, 2)
+          TestMovimientos.testDerechaAbajo(caballo, 1, 2)
         when 3
-          TestMovimientos.testDerechaAbajo(rey, 2, 1)
+          TestMovimientos.testDerechaAbajo(caballo, 2, 1)
         when 2
-          TestMovimientos.testIzquierdaAbajo(rey, 1, 2)
+          TestMovimientos.testIzquierdaAbajo(caballo, 1, 2)
         when 1
-          TestMovimientos.testIzquierdaAbajo(rey, 2, 1)
+          TestMovimientos.testIzquierdaAbajo(caballo, 2, 1)
         end
         j = j - 1
       end
