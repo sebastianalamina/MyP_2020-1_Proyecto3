@@ -68,4 +68,65 @@ class Alfil < Pieza
     return listaPM
   end
 
+  def posiblesMovimientosTablero(tablero)
+    # Lista con los posibles movimientos
+    # de la pieza.
+    listaPM = []
+
+    # NORESTE.
+    begin
+      for i in 1..7
+        x = desplazar(i, i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # SURESTE.
+    begin
+      for i in 1..7
+        x = desplazar(i, -i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # SUROESTE.
+    begin
+      for i in 1..7
+        x = desplazar(-i, -i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # NOROESTE.
+    begin
+      for i in 1..7
+        x = desplazar(-i, i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # Se regresa la lista...
+    return listaPM
+  end
+
 end
