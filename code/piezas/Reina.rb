@@ -108,4 +108,117 @@ class Reina < Pieza
     return listaPM
   end
 
+  def posiblesMovimientosTablero(tablero)
+    # Lista con los posibles movimientos
+    # de la pieza.
+    listaPM = []
+
+    # NORTE.
+    begin
+      for i in 1..7
+        x = desplazar(0, i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # NORESTE.
+    begin
+      for i in 1..7
+        x = desplazar(i, i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # ESTE.
+    begin
+      for i in 1..7
+        x = desplazar(i, 0)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # SURESTE.
+    begin
+      for i in 1..7
+        x = desplazar(i, -i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # SUR.
+    begin
+      for i in 1..7
+        x = desplazar(0, -i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # SUROESTE.
+    begin
+      for i in 1..7
+        x = desplazar(-i, -i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # OESTE.
+    begin
+      for i in 1..7
+        x = desplazar(-i, 0)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # NOROESTE.
+    begin
+      for i in 1..7
+        x = desplazar(-i, i)
+        pieza = tablero.getPieza(x.columna, x.renglón)
+        if !pieza || self.color != pieza.color
+          listaPM.push(x)
+        end
+        break if pieza
+      end
+    rescue
+    end
+
+    # Se regresa la lista...
+    return listaPM
+  end
+
 end
