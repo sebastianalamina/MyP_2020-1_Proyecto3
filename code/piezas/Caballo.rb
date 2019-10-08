@@ -84,4 +84,23 @@ class Caballo < Pieza
     return listaPM
   end
 
+  def posiblesMovimientosTablero(tablero)
+    # Lista con los posibles movimientos
+    # de la pieza.
+    listaPM = posiblesMovimientos
+
+    # Se revisa cada posición posible del Caballo en
+    # general y se quitan aquellas en donde hay piezas
+    # del mismo color que la del caballo.
+    for x in listaPM
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if pieza && self.color == pieza.color
+        listaPM.delete(x)
+      end
+    end
+
+    # Se regresa la lista...
+    return listaPM
+  end
+
 end
