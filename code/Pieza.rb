@@ -25,6 +25,13 @@ class Pieza
     raise "Método sin implementación; las clases " +
           "hijas deben implementarlo."
   end
+  
+  # Devuelve una lista con todos los posibles
+  # movimientos de la pieza dado un tablero.
+  def posiblesMovimientosTablero(tablero)
+    raise "Método sin implementación; las clases " +
+          "hijas deben implementarlo."
+  end
 
   # Método setter para el renglón.
   # renglón:: Renglón nuevo (entero entre 1 y 8).
