@@ -40,7 +40,7 @@ class TestPeon < TestPieza
       columna = rand(1... 8)
       renglón = rand(2... 8)
       peon = Peon.new(columna, renglón, true)
-      TestMovimientos.testDerechaArriba(peon, 0, 1)
+      TestMovimientos.testDerechaArriba(peon, 0, 1, true)
       i = i - 1
     end
     i = 50
@@ -76,27 +76,27 @@ class TestPeon < TestPieza
     i = 50
     while i != 0
       begin
-        peon = Peon.new(rand(1..8), rand(1..8), "blanca")
-        TestMovimientos.testDerechaArriba(peon, rand(2.. 8), rand(2.. 8))
-        assert true, mensaje_error + " de #{peon} [testDerechaArriba]"
+        peon = Peon.new(rand(2..8), rand(2..8), true)
+        TestMovimientos.testDerechaArriba(peon, rand(2.. 8), rand(2.. 8), false)
+        assert false, mensaje_error + " de #{peon} [testDerechaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testDerechaAbajo(peon, rand(1.. 8), rand(1.. 8))
-        assert true, mensaje_error + "#{peon} [testDerechaAbajo]"
+        peon = Peon.new(rand(2.. 8), rand(2.. 8), true)
+        TestMovimientos.testDerechaAbajo(peon, rand(1.. 8), rand(1.. 8), false)
+        assert false, mensaje_error + "#{peon} [testDerechaAbajo]"
       rescue ArgumentError => ae
       end
       begin
-        peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaArriba(peon, rand(2.. 8), rand(2.. 8))
-        assert true, mensaje_error + "#{peon} [testIzquierdaArriba]"
+        peon = Peon.new(rand(2.. 8), rand(2.. 8), true)
+        TestMovimientos.testIzquierdaArriba(peon, rand(2.. 8), rand(2.. 8), false)
+        assert false, mensaje_error + "#{peon} [testIzquierdaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaAbajo(peon, rand(1.. 8), rand(1.. 8))
-        assert true, mensaje_error + "#{peon} [testIzquierdaAbajo]"
+        peon = Peon.new(rand(2.. 8), rand(2.. 8), true)
+        TestMovimientos.testIzquierdaAbajo(peon, rand(2.. 8), rand(2.. 8), false)
+        assert false, mensaje_error + "#{peon} [testIzquierdaAbajo]"
       rescue ArgumentError => ae
       end
       i = i - 1

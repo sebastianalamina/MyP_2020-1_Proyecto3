@@ -21,6 +21,8 @@ def runTests(tester)
   tester.testConstructor
   tester.testDesplazar
   tester.testTo_s
+  print tester.class
+  puts " listo."
 end
 
 # Método "main" de las pruebas...

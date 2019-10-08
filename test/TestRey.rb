@@ -15,21 +15,16 @@ class TestRey < TestPieza
     mensaje_error = "Algo salió mal en testConstructor"
     begin
       Rey.new(rand(-8... -1), rand(1... 8), true)
-      assert(false, mensaje_error + "[columna]")
+      assert false, mensaje_error + "[columna]"
     rescue ArgumentError => ae
     end
     begin
       Rey.new(rand(1... 8), rand(-8... -1, false))
-      assert(false, mensaje_error + "[renglón]")      
-    rescue ArgumentError => ae
-    end
-    begin
-      Rey.new(rand(1... 8), rand(1... 8), true)
-      assert(true, mensaje_error + "[color]")
+      assert false, mensaje_error + "[renglón]"     
     rescue ArgumentError => ae
     end
     rey = Rey.new(columna, renglón, true)
-    assert(rey.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
+    assert rey.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición"
   end
 
   #Prueba el método desplazar de la pieza Rey. Se prueban movimientos
@@ -43,21 +38,21 @@ class TestRey < TestPieza
         rey = Rey.new(rand(1... 8), rand(1... 8), "blanco")
         case i
         when 8
-          TestMovimientos.testDerechaArriba(rey, 1, 0)
+          TestMovimientos.testDerechaArriba(rey, 1, 0, true)
         when 7
-          TestMovimientos.testDerechaArriba(rey, 0, 1)
+          TestMovimientos.testDerechaArriba(rey, 0, 1, true)
         when 6
-          TestMovimientos.testIzquierdaAbajo(rey, 1, 0)
+          TestMovimientos.testIzquierdaAbajo(rey, 1, 0, true)
         when 5
-          TestMovimientos.testIzquierdaAbajo(rey, 0, 1)
+          TestMovimientos.testIzquierdaAbajo(rey, 0, 1, true)
         when 4
-          TestMovimientos.testDerechaArriba(rey, 1, 1)
+          TestMovimientos.testDerechaArriba(rey, 1, 1, true)
         when 3
-          TestMovimientos.testDerechaAbajo(rey, 1, 1)
+          TestMovimientos.testDerechaAbajo(rey, 1, 1, true)
         when 2
-          TestMovimientos.testIzquierdaArriba(rey, 1, 1)
+          TestMovimientos.testIzquierdaArriba(rey, 1, 1, true)
         when 1
-          TestMovimientos.testIzquierdaAbajo(rey, 1, 1)
+          TestMovimientos.testIzquierdaAbajo(rey, 1, 1, true)
         end
         j = j - 1
       end
@@ -72,27 +67,27 @@ class TestRey < TestPieza
     i = 50
     while i != 0
       begin
-        rey = Rey.new(rand(1..8), rand(1..8), "blanca")
-        TestMovimientos.testDerechaArriba(rey, rand(1.. 8), rand(2.. 8))
-        assert(true, mensaje_error + " de #{rey} [testDerechaArriba]")
+        rey = Rey.new(rand(1..8), rand(1..8), true)
+        TestMovimientos.testDerechaArriba(rey, rand(1.. 8), rand(2.. 8), false)
+        assert false, mensaje_error + " de #{rey} [testDerechaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testDerechaAbajo(rey, rand(2.. 8), rand(1.. 8))
-        assert(true, mensaje_error + "#{rey} [testDerechaAbajo]")
+        rey = Rey.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testDerechaAbajo(rey, rand(2.. 8), rand(1.. 8), false)
+        assert false, mensaje_error + " de #{rey} [testDerechaAbajo]"
       rescue ArgumentError => ae
       end
       begin
-        rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaArriba(rey, rand(1.. 8), rand(2.. 8))
-        assert(true, mensaje_error + "#{rey} [testIzquierdaArriba]")
+        rey = Rey.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaArriba(rey, rand(1.. 8), rand(2.. 8), false)
+        assert false, mensaje_error + " de #{rey} [testIzquierdaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaAbajo(rey, rand(2.. 8), rand(1.. 8))
-        assert(true, mensaje_error + "#{rey} [testIzquierdaAbajo]")
+        rey = Rey.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaAbajo(rey, rand(2.. 8), rand(1.. 8), false)
+        assert false, mensaje_error + " de #{rey} [testIzquierdaAbajo]"
       rescue ArgumentError => ae
       end
       i = i - 1
