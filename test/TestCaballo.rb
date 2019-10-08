@@ -15,17 +15,12 @@ class TestCaballo < TestPieza
     mensaje_error = "Algo salió mal en testConstructor"
     begin
       Caballo.new(rand(-8... -1), rand(1... 8), true)
-      assert(false, mensaje_error + "[columna]")
+      assert false, mensaje_error + "[columna]"
     rescue ArgumentError => ae
     end
     begin
       Caballo.new(rand(1... 8), rand(-8... -1, false))
-      assert(false, mensaje_error + "[renglón]")      
-    rescue ArgumentError => ae
-    end
-    begin
-      Caballo.new(rand(1... 8), rand(1... 8), true)
-      assert(true, mensaje_error + "[color]")
+      assert false, mensaje_error + "[renglón]"   
     rescue ArgumentError => ae
     end
     caballo = Caballo.new(columna, renglón, true)
@@ -40,24 +35,24 @@ class TestCaballo < TestPieza
     while i != 0
       j = 50
       while j != 0
-        caballo = Caballo.new(rand(1... 8), rand(1... 8), "blanco")
+        caballo = Caballo.new(rand(1... 8), rand(1... 8), true)
         case i
         when 8
-          TestMovimientos.testDerechaArriba(caballo, 1, 2)
+          TestMovimientos.testDerechaArriba(caballo, 1, 2, true)
         when 7
-          TestMovimientos.testDerechaArriba(caballo, 2, 1)
+          TestMovimientos.testDerechaArriba(caballo, 2, 1, true)
         when 6
-          TestMovimientos.testIzquierdaArriba(caballo, 1, 2)
+          TestMovimientos.testIzquierdaArriba(caballo, 1, 2, true)
         when 5
-          TestMovimientos.testIzquierdaArriba(caballo, 2, 1)
+          TestMovimientos.testIzquierdaArriba(caballo, 2, 1, true)
         when 4
-          TestMovimientos.testDerechaAbajo(caballo, 1, 2)
+          TestMovimientos.testDerechaAbajo(caballo, 1, 2, true)
         when 3
-          TestMovimientos.testDerechaAbajo(caballo, 2, 1)
+          TestMovimientos.testDerechaAbajo(caballo, 2, 1, true)
         when 2
-          TestMovimientos.testIzquierdaAbajo(caballo, 1, 2)
+          TestMovimientos.testIzquierdaAbajo(caballo, 1, 2, true)
         when 1
-          TestMovimientos.testIzquierdaAbajo(caballo, 2, 1)
+          TestMovimientos.testIzquierdaAbajo(caballo, 2, 1, true)
         end
         j = j - 1
       end
@@ -72,27 +67,27 @@ class TestCaballo < TestPieza
     i = 50
     while (i != 0)
       begin
-        caballo = Caballo.new(rand(1..8), rand(1..8), "blanca")
-        TestMovimientos.testDerechaArriba(caballo, rand(3.. 8), rand(3.. 8))
-        assert(true, mensaje_error + " de #{caballo} [testDerechaArriba]")
+        caballo = Caballo.new(rand(1..8), rand(1..8), true)
+        TestMovimientos.testDerechaArriba(caballo, rand(3.. 8), rand(3.. 8), false)
+        assert false, mensaje_error + " de #{caballo} [testDerechaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testDerechaAbajo(caballo, rand(1.. 8), rand(3.. 8))
-        assert(true, mensaje_error + "#{caballo} [testDerechaAbajo]")
+        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testDerechaAbajo(caballo, rand(1.. 8), rand(3.. 8), false)
+        assert false, mensaje_error + "#{caballo} [testDerechaAbajo]"
       rescue ArgumentError => ae
       end
       begin
-        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaArriba(caballo, rand(1.. 8), rand(3.. 8))
-        assert(true, mensaje_error + "#{caballo} [testIzquierdaArriba]")
+        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaArriba(caballo, rand(1.. 8), rand(3.. 8), false)
+        assert false, mensaje_error + "#{caballo} [testIzquierdaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaAbajo(caballo, rand(3.. 8), rand(1.. 8))
-        assert(true, mensaje_error + "#{caballo} [testIzquierdaAbajo]")
+        caballo = Caballo.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaAbajo(caballo, rand(3.. 8), rand(1.. 8), false)
+        assert false, mensaje_error + "#{caballo} [testIzquierdaAbajo]"
       rescue ArgumentError => ae
       end
       i = i - 1

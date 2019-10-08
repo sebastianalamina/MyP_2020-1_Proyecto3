@@ -23,11 +23,6 @@ class TestAlfil < TestPieza
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
-    begin
-      Alfil.new(rand(1... 8), rand(1... 8), true)
-      assert(true, mensaje_error + "[color]")
-    rescue ArgumentError => ae
-    end
     alfil = Alfil.new(columna, renglón, true)
     assert(alfil.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
@@ -44,13 +39,13 @@ class TestAlfil < TestPieza
         alfil = Alfil.new(rand(1... 8), rand(1... 8), "blanco")
         case i
         when 4
-          TestMovimientos.testDerechaArriba(alfil, k, k)
+          TestMovimientos.testDerechaArriba(alfil, k, k, true)
         when 3
-          TestMovimientos.testIzquierdaArriba(alfil, k, k)
+          TestMovimientos.testIzquierdaArriba(alfil, k, k, true)
         when 2
-          TestMovimientos.testDerechaAbajo(alfil, k, k)
+          TestMovimientos.testDerechaAbajo(alfil, k, k, true)
         when 1
-          TestMovimientos.testIzquierdaAbajo(alfil, k, k)
+          TestMovimientos.testIzquierdaAbajo(alfil, k, k, true)
         end
         j = j -1
       end
@@ -65,27 +60,27 @@ class TestAlfil < TestPieza
     i = 50
     while i != 0
       begin
-        alfil = Alfil.new(rand(1..8), rand(1..8), "blanca")
-        TestMovimientos.testDerechaArriba(alfil, rand(5.. 8), rand(1.. 4))
-        assert(true, mensaje_error + " de #{alfil} [testDerechaArriba]")
+        alfil = Alfil.new(rand(1..8), rand(1..8), true)
+        TestMovimientos.testDerechaArriba(alfil, rand(5.. 8), rand(1.. 4), false)
+        assert false, mensaje_error + " de #{alfil} [testDerechaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testDerechaAbajo(alfil, rand(1.. 4), rand(5.. 8))
-        assert(true, mensaje_error + "#{alfil} [testDerechaAbajo]")
+        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testDerechaAbajo(alfil, rand(1.. 4), rand(5.. 8), false)
+        assert false, mensaje_error + "#{alfil} [testDerechaAbajo]"
       rescue ArgumentError => ae
       end
       begin
-        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaArriba(alfil, rand(5.. 8), rand(1.. 4))
-        assert(true, mensaje_error + "#{alfil} [testIzquierdaArriba]")
+        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaArriba(alfil, rand(5.. 8), rand(1.. 4), false)
+        assert false, mensaje_error + "#{alfil} [testIzquierdaArriba]"
       rescue ArgumentError => ae
       end
       begin
-        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
-        TestMovimientos.testIzquierdaAbajo(alfil, rand(1.. 4), rand(5.. 8))
-        assert(true, mensaje_error + "#{alfil} [testIzquierdaAbajo]")
+        alfil = Alfil.new(rand(1.. 8), rand(1.. 8), true)
+        TestMovimientos.testIzquierdaAbajo(alfil, rand(1.. 4), rand(5.. 8), false)
+        assert false, mensaje_error + "#{alfil} [testIzquierdaAbajo]"
       rescue ArgumentError => ae
       end
       i = i - 1
