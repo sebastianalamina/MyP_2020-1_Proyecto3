@@ -67,7 +67,7 @@ class TestPeon < TestPieza
       end
       i = i - 1
     end
-    #self.testDesplazarMovimientosInvalidos
+    self.testDesplazarMovimientosInvalidos
   end
 
   #Prueba que el método dezplazar de la pieza Peón no admita movimientos inválidos.
@@ -78,25 +78,25 @@ class TestPeon < TestPieza
       begin
         peon = Peon.new(rand(1..8), rand(1..8), "blanca")
         TestMovimientos.testDerechaArriba(peon, rand(2.. 8), rand(2.. 8))
-        assert false, mensaje_error + " de #{peon} [testDerechaArriba]"
+        assert true, mensaje_error + " de #{peon} [testDerechaArriba]"
       rescue ArgumentError => ae
       end
       begin
         peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testDerechaAbajo(peon, rand(1.. 8), rand(1.. 8))
-        assert false, mensaje_error + "#{peon} [testDerechaAbajo]"
+        assert true, mensaje_error + "#{peon} [testDerechaAbajo]"
       rescue ArgumentError => ae
       end
       begin
         peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaArriba(peon, rand(2.. 8), rand(2.. 8))
-        assert false, mensaje_error + "#{peon} [testIzquierdaArriba]"
+        assert true, mensaje_error + "#{peon} [testIzquierdaArriba]"
       rescue ArgumentError => ae
       end
       begin
         peon = Peon.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaAbajo(peon, rand(1.. 8), rand(1.. 8))
-        assert false, mensaje_error + "#{peon} [testIzquierdaAbajo]"
+        assert true, mensaje_error + "#{peon} [testIzquierdaAbajo]"
       rescue ArgumentError => ae
       end
       i = i - 1

@@ -14,21 +14,21 @@ class TestReina < TestPieza
     renglón = rand(1... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Reina.new(rand(-8... -1), rand(1... 8), "blanca")
+      Reina.new(rand(-8... -1), rand(1... 8), true)
       assert(false, mensaje_error + "[columna]")
     rescue ArgumentError => ae
     end
     begin
-      Reina.new(rand(1... 8), rand(-8... -1, "negra"))
+      Reina.new(rand(1... 8), rand(-8... -1, false))
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
     begin
-      Reina.new(rand(1... 8), rand(1... 8), "roja")
-      assert(false, mensaje_error + "[color]")
+      Reina.new(rand(1... 8), rand(1... 8), true)
+      assert(true, mensaje_error + "[color]")
     rescue ArgumentError => ae
     end
-    reina = Reina.new(columna, renglón, "blanco")
+    reina = Reina.new(columna, renglón, true)
     assert(reina.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
@@ -75,25 +75,25 @@ class TestReina < TestPieza
       begin
         reina = Reina.new(rand(1..8), rand(1..8), "blanca")
         TestMovimientos.testDerechaArriba(reina, rand(5.. 8), rand(1.. 4))
-        assert(false, mensaje_error + " de #{reina} [testDerechaArriba]")
+        assert(true, mensaje_error + " de #{reina} [testDerechaArriba]")
       rescue ArgumentError => ae
       end
       begin
         reina = Reina.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testDerechaAbajo(reina, rand(1.. 4), rand(5.. 8))
-        assert(false, mensaje_error + "#{reina} [testDerechaAbajo]")
+        assert(true, mensaje_error + "#{reina} [testDerechaAbajo]")
       rescue ArgumentError => ae
       end
       begin
         reina = Reina.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaArriba(reina, rand(5.. 8), rand(1.. 4))
-        assert(false, mensaje_error + "#{reina} [testIzquierdaArriba]")
+        assert(true, mensaje_error + "#{reina} [testIzquierdaArriba]")
       rescue ArgumentError => ae
       end
       begin
         reina = Reina.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaAbajo(reina, rand(1.. 4), rand(5.. 8))
-        assert(false, mensaje_error + "#{reina} [testIzquierdaAbajo]")
+        assert(true, mensaje_error + "#{reina} [testIzquierdaAbajo]")
       rescue ArgumentError => ae
       end
       i = i - 1
@@ -105,9 +105,9 @@ class TestReina < TestPieza
     columna = rand(1.. 8)
     renglón = rand(1.. 8)
     posición = Posicion.new(columna, renglón)
-    reina_to_s = "Esta pieza blanca (Reina) se encuentra en la posición #{posición}"
-    reina = Reina.new(columna, renglón, "blanca")
-    assert(reina_to_s == Reina.to_s, "Algo salió mal en toString de #{reina}")
+    reina_to_s = "Esta pieza blanca (Reina) se encuentra en la posición #{posición}."
+    reina = Reina.new(columna, renglón, true)
+    assert(reina_to_s == reina.to_s, "Algo salió mal en toString de #{reina}")
   end
 
 end

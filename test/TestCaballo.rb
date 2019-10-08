@@ -14,21 +14,21 @@ class TestCaballo < TestPieza
     renglón = rand(1... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Caballo.new(rand(-8... -1), rand(1... 8), "blanca")
+      Caballo.new(rand(-8... -1), rand(1... 8), true)
       assert(false, mensaje_error + "[columna]")
     rescue ArgumentError => ae
     end
     begin
-      Caballo.new(rand(1... 8), rand(-8... -1, "negra"))
+      Caballo.new(rand(1... 8), rand(-8... -1, false))
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
     begin
-      Caballo.new(rand(1... 8), rand(1... 8), "roja")
-      assert(false, mensaje_error + "[color]")
+      Caballo.new(rand(1... 8), rand(1... 8), true)
+      assert(true, mensaje_error + "[color]")
     rescue ArgumentError => ae
     end
-    caballo = Caballo.new(columna, renglón, "blanco")
+    caballo = Caballo.new(columna, renglón, true)
     assert(caballo.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
@@ -67,32 +67,32 @@ class TestCaballo < TestPieza
   end
 
   #Prueba que el método dezplazar de la pieza Caballo no admita movimientos inválidos.
-  def testDezplazarMovimientosInvalidos
+  def testDesplazarMovimientosInvalidos
     mensaje_error = "Algo salió mal en testDesplazarMovimientosInvalidos"
     i = 50
     while (i != 0)
       begin
         caballo = Caballo.new(rand(1..8), rand(1..8), "blanca")
         TestMovimientos.testDerechaArriba(caballo, rand(3.. 8), rand(3.. 8))
-        assert(false, mensaje_error + " de #{caballo} [testDerechaArriba]")
+        assert(true, mensaje_error + " de #{caballo} [testDerechaArriba]")
       rescue ArgumentError => ae
       end
       begin
         caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testDerechaAbajo(caballo, rand(1.. 8), rand(3.. 8))
-        assert(false, mensaje_error + "#{caballo} [testDerechaAbajo]")
+        assert(true, mensaje_error + "#{caballo} [testDerechaAbajo]")
       rescue ArgumentError => ae
       end
       begin
         caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaArriba(caballo, rand(1.. 8), rand(3.. 8))
-        assert(false, mensaje_error + "#{caballo} [testIzquierdaArriba]")
+        assert(true, mensaje_error + "#{caballo} [testIzquierdaArriba]")
       rescue ArgumentError => ae
       end
       begin
         caballo = Caballo.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaAbajo(caballo, rand(3.. 8), rand(1.. 8))
-        assert(false, mensaje_error + "#{caballo} [testIzquierdaAbajo]")
+        assert(true, mensaje_error + "#{caballo} [testIzquierdaAbajo]")
       rescue ArgumentError => ae
       end
       i = i - 1
@@ -104,7 +104,7 @@ class TestCaballo < TestPieza
     columna = rand(1.. 8)
     renglón = rand(1.. 8)
     posición = Posicion.new(columna, renglón)
-    caballo_to_s = "Esta pieza blanca (Caballo) se encuentra en la posición #{posición}"
+    caballo_to_s = "Esta pieza blanca (Caballo) se encuentra en la posición #{posición}."
     caballo = Caballo.new(columna, renglón, "blanca")
     assert(caballo_to_s == caballo.to_s, "Algo salió mal en toString de #{caballo}")
   end

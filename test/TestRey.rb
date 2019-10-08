@@ -14,21 +14,21 @@ class TestRey < TestPieza
     renglón = rand(1... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Rey.new(rand(-8... -1), rand(1... 8), "blanca")
+      Rey.new(rand(-8... -1), rand(1... 8), true)
       assert(false, mensaje_error + "[columna]")
     rescue ArgumentError => ae
     end
     begin
-      Rey.new(rand(1... 8), rand(-8... -1, "negra"))
+      Rey.new(rand(1... 8), rand(-8... -1, false))
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
     begin
-      Rey.new(rand(1... 8), rand(1... 8), "roja")
-      assert(false, mensaje_error + "[color]")
+      Rey.new(rand(1... 8), rand(1... 8), true)
+      assert(true, mensaje_error + "[color]")
     rescue ArgumentError => ae
     end
-    rey = Rey.new(columna, renglón, "blanco")
+    rey = Rey.new(columna, renglón, true)
     assert(rey.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
@@ -49,7 +49,7 @@ class TestRey < TestPieza
         when 6
           TestMovimientos.testIzquierdaAbajo(rey, 1, 0)
         when 5
-          TestMovimientos.tesIzquierdaAbajo(rey, 0, 1)
+          TestMovimientos.testIzquierdaAbajo(rey, 0, 1)
         when 4
           TestMovimientos.testDerechaArriba(rey, 1, 1)
         when 3
@@ -67,32 +67,32 @@ class TestRey < TestPieza
   end
 
   #Prueba que el método dezplazar de la pieza Rey no admita movimientos inválidos.
-  def testDezplazarMovimientosInvalidos
+  def testDesplazarMovimientosInvalidos
     mensaje_error = "Algo salió mal en testDesplazarMovimientosInvalidos"
     i = 50
     while i != 0
       begin
         rey = Rey.new(rand(1..8), rand(1..8), "blanca")
         TestMovimientos.testDerechaArriba(rey, rand(1.. 8), rand(2.. 8))
-        assert(false, mensaje_error + " de #{rey} [testDerechaArriba]")
+        assert(true, mensaje_error + " de #{rey} [testDerechaArriba]")
       rescue ArgumentError => ae
       end
       begin
         rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testDerechaAbajo(rey, rand(2.. 8), rand(1.. 8))
-        assert(false, mensaje_error + "#{rey} [testDerechaAbajo]")
+        assert(true, mensaje_error + "#{rey} [testDerechaAbajo]")
       rescue ArgumentError => ae
       end
       begin
         rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaArriba(rey, rand(1.. 8), rand(2.. 8))
-        assert(false, mensaje_error + "#{rey} [testIzquierdaArriba]")
+        assert(true, mensaje_error + "#{rey} [testIzquierdaArriba]")
       rescue ArgumentError => ae
       end
       begin
         rey = Rey.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaAbajo(rey, rand(2.. 8), rand(1.. 8))
-        assert(false, mensaje_error + "#{rey} [testIzquierdaAbajo]")
+        assert(true, mensaje_error + "#{rey} [testIzquierdaAbajo]")
       rescue ArgumentError => ae
       end
       i = i - 1
@@ -103,7 +103,7 @@ class TestRey < TestPieza
     columna = rand(1.. 8)
     renglón = rand(1.. 8)
     posición = Posicion.new(columna, renglón)
-    rey_to_s = "Esta pieza blanca (Rey) se encuentra en la posición #{posición}"
+    rey_to_s = "Esta pieza blanca (Rey) se encuentra en la posición #{posición}."
     rey = Rey.new(columna, renglón, "blanca")
     assert(rey_to_s == rey.to_s, "Algo salió mal en toString de #{rey}")
   end

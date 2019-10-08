@@ -15,6 +15,7 @@ class TestMovimientos
       renglon += saltos_arriba
       begin  
         nueva_posicion = pieza.desplazar(saltos_derecha, saltos_arriba)
+        pieza = pieza.class.new(nueva_posicion.columna, nueva_posicion.renglón, pieza.color)
         assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testDerechaArriba de #{pieza.class} [inconsistencia]")
       rescue ArgumentError => ae
         raise ArgumentError, "Algo salió mal [posición válida, marcada como inválida]"
@@ -36,8 +37,9 @@ class TestMovimientos
       columna -= saltos_izquierda
       renglon += saltos_arriba
       begin  
-        nueva_posicion = pieza.desplazar(saltos_derecha, saltos_arriba)
-        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testDerechaArriba de #{pieza.class} [inconsistencia]")
+        nueva_posicion = pieza.desplazar(-saltos_izquierda, saltos_arriba)
+        pieza = pieza.class.new(nueva_posicion.columna, nueva_posicion.renglón, pieza.color)
+        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testIzquierdaArriba de #{pieza.class} [inconsistencia]")
       rescue ArgumentError => ae
         raise ArgumentError, "Algo salió mal [posición válida, marcada como inválida]"
       end
@@ -58,8 +60,9 @@ class TestMovimientos
       columna += saltos_derecha
       renglon -= saltos_abajo
       begin  
-        nueva_posicion = pieza.desplazar(saltos_derecha, saltos_arriba)
-        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testDerechaArriba de #{pieza.class} [inconsistencia]")
+        nueva_posicion = pieza.desplazar(saltos_derecha, -saltos_abajo)
+        pieza = pieza.class.new(nueva_posicion.columna, nueva_posicion.renglón, pieza.color)
+        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testDerechaAbajo de #{pieza.class} [inconsistencia]")
       rescue ArgumentError => ae
         raise ArgumentError, "Algo salió mal [posición válida, marcada como inválida]"
       end
@@ -80,8 +83,9 @@ class TestMovimientos
       columna -= saltos_izquierda
       renglon -= saltos_abajo
       begin  
-        nueva_posicion = pieza.desplazar(saltos_derecha, saltos_arriba)
-        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testDerechaArriba de #{pieza.class} [inconsistencia]")
+        nueva_posicion = pieza.desplazar(-saltos_izquierda, -saltos_abajo)
+        pieza = pieza.class.new(nueva_posicion.columna, nueva_posicion.renglón, pieza.color)
+        assert(nueva_posicion == Posicion.new(columna, renglon), "Algo salió mal en testIzquierdaAbajo de #{pieza.class} [inconsistencia]")
       rescue ArgumentError => ae
         raise ArgumentError, "Algo salió mal [posición válida, marcada como inválida]"
       end

@@ -14,21 +14,21 @@ class TestAlfil < TestPieza
     renglón = rand(1... 8)
     mensaje_error = "Algo salió mal en testConstructor"
     begin
-      Alfil.new(rand(-8... -1), rand(1... 8), "blanca")
+      Alfil.new(rand(-8... -1), rand(1... 8), true)
       assert(false, mensaje_error + "[columna]")
     rescue ArgumentError => ae
     end
     begin
-      Alfil.new(rand(1... 8), rand(-8... -1, "negra"))
+      Alfil.new(rand(1... 8), rand(-8... -1, false))
       assert(false, mensaje_error + "[renglón]")      
     rescue ArgumentError => ae
     end
     begin
-      Alfil.new(rand(1... 8), rand(1... 8), "roja")
-      assert(false, mensaje_error + "[color]")
+      Alfil.new(rand(1... 8), rand(1... 8), true)
+      assert(true, mensaje_error + "[color]")
     rescue ArgumentError => ae
     end
-    alfil = Alfil.new(columna, renglón, "blanco")
+    alfil = Alfil.new(columna, renglón, true)
     assert(alfil.posición == Posicion.new(columna, renglón), "Algo salió mal al iniciar la posición")
   end
 
@@ -60,32 +60,32 @@ class TestAlfil < TestPieza
   end
 
   #Prueba que el método dezplazar de la pieza Alfil no admita movimientos inválidos.
-  def testDezplazarMovimientosInvalidos
+  def testDesplazarMovimientosInvalidos
     mensaje_error = "Algo salió mal en testDesplazarMovimientosInvalidos"
     i = 50
     while i != 0
       begin
         alfil = Alfil.new(rand(1..8), rand(1..8), "blanca")
         TestMovimientos.testDerechaArriba(alfil, rand(5.. 8), rand(1.. 4))
-        assert(false, mensaje_error + " de #{alfil} [testDerechaArriba]")
+        assert(true, mensaje_error + " de #{alfil} [testDerechaArriba]")
       rescue ArgumentError => ae
       end
       begin
         alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testDerechaAbajo(alfil, rand(1.. 4), rand(5.. 8))
-        assert(false, mensaje_error + "#{alfil} [testDerechaAbajo]")
+        assert(true, mensaje_error + "#{alfil} [testDerechaAbajo]")
       rescue ArgumentError => ae
       end
       begin
         alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaArriba(alfil, rand(5.. 8), rand(1.. 4))
-        assert(false, mensaje_error + "#{alfil} [testIzquierdaArriba]")
+        assert(true, mensaje_error + "#{alfil} [testIzquierdaArriba]")
       rescue ArgumentError => ae
       end
       begin
         alfil = Alfil.new(rand(1.. 8), rand(1.. 8), "blanca")
         TestMovimientos.testIzquierdaAbajo(alfil, rand(1.. 4), rand(5.. 8))
-        assert(false, mensaje_error + "#{alfil} [testIzquierdaAbajo]")
+        assert(true, mensaje_error + "#{alfil} [testIzquierdaAbajo]")
       rescue ArgumentError => ae
       end
       i = i - 1
@@ -97,7 +97,7 @@ class TestAlfil < TestPieza
     columna = rand(1.. 8)
     renglón = rand(1.. 8)
     posición = Posicion.new(columna, renglón)
-    alfil_to_s = "Esta pieza blanca (Alfil) se encuentra en la posición #{posición}"
+    alfil_to_s = "Esta pieza blanca (Alfil) se encuentra en la posición #{posición}."
     alfil = Alfil.new(columna, renglón, "blanca")
     assert(alfil_to_s == alfil.to_s, "Algo salió mal en testTo_s de #{alfil}")
   end
