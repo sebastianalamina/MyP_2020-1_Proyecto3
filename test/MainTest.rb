@@ -25,6 +25,7 @@ end
 
 # Método "main" de las pruebas...
 if __FILE__ == $0
+  puts "Corriendo pruebas..."
   testPeon = TestPeon.new
   runTests(testPeon)
   testTorre = TestTorre.new
@@ -37,4 +38,5 @@ if __FILE__ == $0
   runTests(testReina)
   testRey = TestRey.new
   runTests(testRey)
+  puts "Listo."
 end
