@@ -21,6 +21,38 @@ class Peon < Pieza
     super(columna, renglón, color);
   end
 
+  # Método setter para el renglón de un peón.
+  # renglón:: Renglón nuevo (entero entre 1 y 8).
+  def renglón=(renglón)
+    if color && renglón == 1
+      raise ArgumentError, "Un peón blanco no puede ubicarse " +
+                            "en el primer renglón."
+    end
+
+    if !color && renglón == 8
+      raise ArgumentError, "Un peón negro no puede ubicarse " +
+                            "en el último renglón."
+    end
+
+    if (renglón >= 1 && renglón <= 8)
+      @renglón = renglón
+    else
+      raise ArgumentError, "El renglón tiene que ser " +
+                            "un valor entre 1 y 8."
+    end
+  end
+
+  # Método setter para la columna de un peón.
+  # columna:: Columna nueva (entero entre 1 y 8).
+  def columna=(columna)
+    if (columna >= 1 && columna <= 8)
+      @columna = columna
+    else
+      raise ArgumentError, "La columna tiene que ser " +
+                            "un valor entre 1 y 8."
+    end
+  end
+
   def posiblesMovimientos
     # Lista con los posibles movimientos
     # de la pieza.

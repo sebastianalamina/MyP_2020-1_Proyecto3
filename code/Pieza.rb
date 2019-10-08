@@ -26,6 +26,28 @@ class Pieza
           "hijas deben implementarlo."
   end
 
+  # Método setter para el renglón.
+  # renglón:: Renglón nuevo (entero entre 1 y 8).
+  def renglón=(renglón)
+    if (renglón >= 1 && renglón <= 8)
+      @posición.renglón = renglón
+    else
+      raise ArgumentError, "El renglón tiene que ser " +
+                            "un valor entre 1 y 8."
+    end
+  end
+
+  # Método setter para la columna.
+  # columna:: Columna nueva (entero entre 1 y 8).
+  def columna=(columna)
+    if (columna >= 1 && columna <= 8)
+      @posición.columna = columna
+    else
+      raise ArgumentError, "La columna tiene que ser " +
+                            "un valor entre 1 y 8."
+    end
+  end
+
   # Devuelve la posición de la pieza desplazada "x" lugares
   # horizontalmente y "y" lugares verticalmente.
   # x:: Número de columnas por desplazar.
