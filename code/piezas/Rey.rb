@@ -68,4 +68,93 @@ class Rey < Pieza
     return listaPM
   end
 
+  def posiblesMovimientosTablero(tablero)
+    # Lista con los posibles movimientos
+    # de la pieza.
+    listaPM = []
+
+    # NORTE.
+    begin
+      x = desplazar(0, 1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # NORESTE.
+    begin
+      x = desplazar(1, 1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # ESTE.
+    begin
+      x = desplazar(1, 0)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # SURESTE.
+    begin
+      x = desplazar(1, -1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # SUR.
+    begin
+      x = desplazar(0, -1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # SUROESTE.
+    begin
+      x = desplazar(-1, -1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # OESTE.
+    begin
+      x = desplazar(-1, 0)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # NOROESTE.
+    begin
+      x = desplazar(-1, 1)
+      pieza = tablero.getPieza(x.columna, x.renglón)
+      if !pieza || self.color != pieza.color
+        listaPM.push(x)
+      end
+    rescue
+    end
+
+    # Se regresa la lista...
+    return listaPM
+  end
+
 end
