@@ -2,6 +2,8 @@
 
 Retrospectiva
 
+El trabajo que se está reconstruyendo se encuentra en la carpeta *Trabajo pasado*.
+
 ## Pre-requisitos :clipboard:
 
 Es necesario tener instalado...
