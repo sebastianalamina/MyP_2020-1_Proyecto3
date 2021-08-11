@@ -1,4 +1,8 @@
 # Proyecto 3 - Retrospectiva
+Trabajo presentado como parte del curso de Modelado y Programación impartido por el profesor José de Jesús Galaviz Casas durante el semestre 2020-1 en la Facultad de Ciencias, UNAM.
+
+Consiste en reformar un proyecto de programación realizado durante los primeros semestres de la carrera, con el objetivo de analizar nuestras prácticas de programación y comparar la eficiencia previa del proyecto con la nueva.
+
 El trabajo que se está reconstruyendo se encuentra en la carpeta *Trabajo pasado*.
 
 ## Pre-requisitos :clipboard:
